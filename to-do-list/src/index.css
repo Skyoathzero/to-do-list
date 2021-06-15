@@ -81,7 +81,7 @@ main {
 
 .task{
   display:inline-flex;
-  max-width: 100%;
+  min-width: 40%;
   background-color:lightgray;
   border-radius: 25px;
   margin: 0.5rem 0;
@@ -90,6 +90,33 @@ main {
 
 .task > *{
   font-size: 1rem;
-  margin: 0.5em 1em;
+  margin: 0.5em 4em;
   
+}
+
+.edit-btn >*{
+  color:lightgreen
+}
+.delete-btn >*{
+  color:red;
+  
+}
+
+.delete-btn{
+align-items:left;
+padding: 0.5rem;
+fill-opacity:100%;
+background-color:transparent;
+border-radius: 100px;
+}
+.edit-btn{
+  align-items:left;
+  position:relative;
+  padding: 0.5rem ;
+  fill-opacity:100%;
+  background-color:transparent;
+  border-radius: 100px;}
+
+.task-object{
+  display:flex-inline;
 }

@@ -19,6 +19,12 @@ function App() {
             setTask({'taskName':'','time':'','color':''})
         }
     }
+
+    const deleteTask = (id) =>{
+        const newTasks = tasks.filter((task)=> task.id !== id)
+        console.log(newTasks)
+        setTasks(newTasks)
+    }
     return (
         <main>
             <section className="input-container">
@@ -51,8 +57,8 @@ function App() {
             </section>
             <section className="list-container">
                 {tasks.map((task,index) =>{
-                    const {taskName,time,color} = task;
-                    return(<Task key={index} taskName={taskName} time={time} color={color} />)
+                    const {taskName,time,color,id} = task;
+                    return(<Task key={index} taskName={taskName} time={time} color={color} id={id} deleteTask={deleteTask}/>)
                 })}
             </section>
         </main>
