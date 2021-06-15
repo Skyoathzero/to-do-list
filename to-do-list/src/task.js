@@ -1,9 +1,11 @@
 import React from 'react'
 
-function Task() {
+function Task({taskName,time,color}) {
     return (
-        <div>
-            <h1>hello</h1>
+        <div className="task">
+            <h1>{taskName}</h1>
+            <p>{time}</p>
+            <p>{color}</p>
         </div>
     )
 }

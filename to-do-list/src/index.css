@@ -38,25 +38,58 @@ main {
   background-color:white;
   display : flex;
   align-items: center;
+  max-width: 60% ;
 }
 
 .list-container{
+  display:grid;
   max-width: 50% ;
   width: 100vw;
   margin: 0 0;
   background-color:white;
   border-radius: 25px;
+  align-items: center;
+  justify-content:flex-start
 }
 
 .btn{
   background: #D72638;
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
   font-size: 1.2rem;
   border-color: transparent;
   border-radius: 25px;
   text-transform: capitalize;
   color: white;
-  margin-left : 1rem;
+  margin-left : 0.5em;
+  max-height:60% ;
 }
 
 .btn:hover{background: #D72615 ;}
+
+.input-form{
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-control{
+  display:grid;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  gap: 0.5rem;
+  align-items: center;
+  place-items: center;}
+
+.task{
+  display:inline-flex;
+  max-width: 100%;
+  background-color:lightgray;
+  border-radius: 25px;
+  margin: 0.5rem 0;
+  margin-left: 1rem;
+}
+
+.task > *{
+  font-size: 1rem;
+  margin: 0.5em 1em;
+  
+}
