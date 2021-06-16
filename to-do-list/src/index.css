@@ -1,5 +1,5 @@
 *{
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   padding: 0;
   margin: 0;
 }
@@ -41,16 +41,7 @@ main {
   max-width: 60% ;
 }
 
-.list-container{
-  display:grid;
-  max-width: 50% ;
-  width: 100vw;
-  margin: 0 0;
-  background-color:white;
-  border-radius: 25px;
-  align-items: center;
-  justify-content:flex-start
-}
+
 
 .btn{
   background: #D72638;
@@ -79,9 +70,21 @@ main {
   align-items: center;
   place-items: center;}
 
+.list-container{
+  position: relative;
+  display:grid;
+  width: 50%;
+  margin: 0 0;
+  background-color:white;
+  border-radius: 25px;
+  align-items: center !important;
+  justify-content:flex
+}
 .task{
-  display:inline-flex;
-  min-width: 40%;
+
+  position:relative;
+  display:flex;
+  min-width: 80%;
   background-color:lightgray;
   border-radius: 25px;
   margin: 0.5rem 0;
@@ -101,22 +104,32 @@ main {
   color:red;
   
 }
-
+.task-btn-container{
+  display:flex;
+}
 .delete-btn{
-align-items:left;
-padding: 0.5rem;
-fill-opacity:100%;
-background-color:transparent;
-border-radius: 100px;
+  
+  padding: 0.5rem;
+  fill-opacity:100%;
+  background-color:transparent;
+  border-radius: 100px;
 }
 .edit-btn{
-  align-items:left;
-  position:relative;
+  
   padding: 0.5rem ;
   fill-opacity:100%;
   background-color:transparent;
   border-radius: 100px;}
 
 .task-object{
-  display:flex-inline;
+  display:flex;
+}
+
+.task-btn-container{
+  margin: 0.45rem 0;
+  display:inline-flex;
+  justify-content:center;
+  align-items: center;
+  position:absolute;
+  right:20px;
 }
