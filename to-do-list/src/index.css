@@ -78,7 +78,8 @@ main {
   background-color:white;
   border-radius: 25px;
   align-items: center !important;
-  justify-content:flex
+  justify-content:flex;
+  min-width:592px;
 }
 .task{
 
@@ -89,21 +90,28 @@ main {
   border-radius: 25px;
   margin: 0.5rem 0;
   margin-left: 1rem;
+  align-items: center;
 }
-
+.task .dot{margin-left:1em;}
 .task > *{
   font-size: 1rem;
-  margin: 0.5em 4em;
+  margin: 0.5em 2em;
   
 }
 
 .edit-btn >*{
-  color:lightgreen
+  color:black;
+}
+.edit-btn >*:hover{
+  color:green
 }
 .delete-btn >*{
-  color:red;
-  
+  color:black;
 }
+.delete-btn >*:hover{
+  color:red;
+}
+
 .task-btn-container{
   display:flex;
 }
@@ -113,14 +121,18 @@ main {
   fill-opacity:100%;
   background-color:transparent;
   border-radius: 100px;
+  border-color: black;
+  border-style: none;
 }
 .edit-btn{
   
   padding: 0.5rem ;
   fill-opacity:100%;
   background-color:transparent;
-  border-radius: 100px;}
-
+  border-radius: 100px;
+  border-color: black;
+  border-style: none;
+}
 .task-object{
   display:flex;
 }
@@ -132,4 +144,26 @@ main {
   align-items: center;
   position:absolute;
   right:20px;
+}
+.pos-btn{
+  position: relative;
+  display:block;
+  align-items:center;
+  margin: left 10px;
+
+}
+
+.pos-btn button{
+  display:block;
+  fill-opacity:100%;
+  background-color:transparent;
+  border-color: transparent;
+}
+
+.dot{
+  height:1rem;
+  width:1rem;
+  background-color:black;
+  border-radius:50%;
+  display:flex;
 }

@@ -2,19 +2,21 @@ import React ,{useState} from 'react'
 import Task from './task'
 
 function App() {
+    // {'taskName':'a','time':'s','color':'s','id':'24'},{'taskName':'as','time':'s','color':'s','id':'23'}
     const [tasks, setTasks] = useState([])
     const [task, setTask] = useState({'taskName':'','time':'','color':''})
     const [isEditing, setIsEditing] = useState(false)
     const [editId, setEditId] = useState(null)
+
     const handleChange = (e)=>{
         const name = e.target.name
         const value = e.target.value
         setTask({...task, [name]:value})
     }
-
+    
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(task.taskName && task.time && task.color && isEditing){
+        if(task.taskName && task.time && checkIfHex(task.color) && isEditing){
             const newTasks = tasks.map((oldtask)=>{
                 if(oldtask.id === editId){
                     const{taskName,time,color} = task
@@ -26,8 +28,13 @@ function App() {
             setEditId(null)
             setTask({'taskName':'','time':'','color':''})
         }
-        else if(task.taskName && task.time && task.color){
+        else if(task.taskName && task.time && checkIfHex(task.color)){
             const newTask = {...task,id:new Date().getTime().toString()}
+            setTasks((tasks)=>[...tasks,newTask])
+            setTask({'taskName':'','time':'','color':''})
+        }
+        else if(task.taskName && task.time && !checkIfHex(task.color)){
+            const newTask = {...task,id:new Date().getTime().toString(),'color':'black'}
             setTasks((tasks)=>[...tasks,newTask])
             setTask({'taskName':'','time':'','color':''})
         }
@@ -45,9 +52,37 @@ function App() {
         setEditId(id)
         setTask({'taskName':targetItem.taskName,
                 'time':targetItem.time,
-                'color':targetItem.color})
+                'color':targetItem.color})}
 
+    const changeListPosition = (id,newIndex) =>{
+        let index = newIndex
+        let targetItem = null
+        if(newIndex>=tasks.length){
+            targetItem = tasks[0]
+            index = 0
+        }
+        else if(newIndex<0){
+            targetItem = tasks[tasks.length-1]
+            index =tasks.lengthx-1
+        }
+        else{targetItem = tasks[index]}
+
+        const initialItem = tasks.find((task)=>task.id === id)
+        
+        const initialPos = tasks.indexOf(initialItem)
+        let targetArr = tasks.map((task)=>task)
+        targetArr[index] = initialItem
+        targetArr[initialPos] = targetItem
+        setTasks(targetArr)
     }
+    const checkIfHex=(hex)=>{
+        const re = /^(#[a-f0-9]{6}|#[a-f0-9]{3}|rgb *\( *[0-9]{1,3}%? *, *[0-9]{1,3}%? *, *[0-9]{1,3}%? *\)|rgba *\( *[0-9]{1,3}%? *, *[0-9]{1,3}%? *, *[0-9]{1,3}%? *, *[0-9]{1,3}%? *\)|black|green|silver|gray|olive|white|yellow|maroon|navy|red|blue|purple|teal|fuchsia|aqua)$/i
+        if(re.test(hex)){
+            return true
+        }
+        else{return false}
+    }
+
     return (
         <main>
             <section className="input-container">
@@ -74,7 +109,7 @@ function App() {
                         name='color'
                         value={task.color}
                         onChange={handleChange}
-                        placeholder="Color"/>
+                        placeholder="Please enter a valid color/hex/rgb"/>
                     </div>
                 </form>
             </section>
@@ -88,6 +123,8 @@ function App() {
                     id={id} 
                     deleteTask={deleteTask}
                     editTask={editTask}
+                    index={index}
+                    changeListPosition={changeListPosition}
                     />)
                 })}
             </section>
