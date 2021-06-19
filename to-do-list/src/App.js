@@ -3,6 +3,7 @@ import Task from './task'
 
 function App() {
     // {'taskName':'a','time':'s','color':'s','id':'24'},{'taskName':'as','time':'s','color':'s','id':'23'}
+
     const [tasks, setTasks] = useState([])
     const [task, setTask] = useState({'taskName':'','time':'','color':''})
     const [isEditing, setIsEditing] = useState(false)
@@ -16,7 +17,7 @@ function App() {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(task.taskName && task.time && checkIfHex(task.color) && isEditing){
+        if(task.taskName && checkTimeFormat(task.time) && checkIfHex(task.color) && isEditing){
             const newTasks = tasks.map((oldtask)=>{
                 if(oldtask.id === editId){
                     const{taskName,time,color} = task
@@ -28,7 +29,7 @@ function App() {
             setEditId(null)
             setTask({'taskName':'','time':'','color':''})
         }
-        else if(task.taskName && task.time && checkIfHex(task.color)){
+        else if(task.taskName && checkTimeFormat(task.time) && checkIfHex(task.color)){
             const newTask = {...task,id:new Date().getTime().toString()}
             setTasks((tasks)=>[...tasks,newTask])
             setTask({'taskName':'','time':'','color':''})
@@ -82,6 +83,13 @@ function App() {
         }
         else{return false}
     }
+    const checkTimeFormat = (time) =>{
+        const re = /^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/
+        if (re.test(time)) {
+            return true
+        }
+        else{return false}
+    }
 
     return (
         <main>
@@ -103,7 +111,7 @@ function App() {
                         name='time'
                         value={task.time}
                         onChange={handleChange}
-                        placeholder="Time"/>
+                        placeholder="HH:MM:SS format"/>
 
                         <input type="text" id='color'
                         name='color'

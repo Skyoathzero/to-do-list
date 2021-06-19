@@ -167,3 +167,19 @@ main {
   border-radius:50%;
   display:flex;
 }
+
+.timer-control{
+  position: relative;
+  display:flex;
+  align-items:center;
+  margin-left: 30px;
+  background-color:transparent;
+  border-color: transparent;
+  align-items:center;
+}
+
+.timer-control>*{
+  color:gray;
+  width:2rem;
+  height:2rem;
+}
