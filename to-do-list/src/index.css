@@ -183,3 +183,7 @@ main {
   width:2rem;
   height:2rem;
 }
+.task > p{
+  position: absolute;
+  right:20px;
+}
